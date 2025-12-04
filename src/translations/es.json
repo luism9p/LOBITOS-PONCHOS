@@ -34,5 +34,22 @@
     "shop": {
         "collection": "La Colección",
         "description": "Explora nuestra gama de ponchos hechos a mano. Cada pieza es un testimonio de calidad y comodidad."
+    },
+    "product": {
+        "description": "Descripción",
+        "details": "Detalles",
+        "measures": "Medidas",
+        "add_to_cart": "Añadir al Carrito",
+        "category": {
+            "poncho": "Poncho",
+            "Ponchos": "Ponchos",
+            "other": "Otro"
+        },
+        "measure_labels": {
+            "Total Length": "Largo Total",
+            "Width": "Ancho",
+            "Sleeve Length": "Largo de Manga",
+            "Neck Opening": "Apertura de Cuello"
+        }
     }
 }

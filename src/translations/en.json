@@ -34,5 +34,22 @@
     "shop": {
         "collection": "The Collection",
         "description": "Explore our range of handcrafted ponchos. Each piece is a testament to quality and comfort."
+    },
+    "product": {
+        "description": "Description",
+        "details": "Details",
+        "measures": "Measures",
+        "add_to_cart": "Add to Cart",
+        "category": {
+            "poncho": "Poncho",
+            "Ponchos": "Ponchos",
+            "other": "Other"
+        },
+        "measure_labels": {
+            "Total Length": "Total Length",
+            "Width": "Width",
+            "Sleeve Length": "Sleeve Length",
+            "Neck Opening": "Neck Opening"
+        }
     }
 }

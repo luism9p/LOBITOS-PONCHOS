@@ -21,9 +21,9 @@ const Shop = () => {
     };
 
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div className="mb-12 text-center">
-                <h1 className="text-3xl font-light text-stone-900 mb-4">{t('shop.collection')}</h1>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="mb-6 text-center">
+                <h1 className="text-3xl font-light text-stone-900 mb-2">{t('shop.collection')}</h1>
                 <p className="text-stone-500 max-w-2xl mx-auto">
                     {t('shop.description')}
                 </p>

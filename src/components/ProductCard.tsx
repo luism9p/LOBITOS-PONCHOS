@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Product } from '../types';
 import { Button } from './ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-
 import { ProductModal } from './ProductModal';
+import { useLanguage } from '../context/LanguageContext';
 
 interface ProductCardProps {
     product: Product;
@@ -13,6 +13,7 @@ interface ProductCardProps {
 export const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const { t } = useLanguage();
 
     const nextImage = (e: React.MouseEvent) => {
         e.preventDefault();
@@ -86,7 +87,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }
                             }}
                             className="w-full bg-white text-black hover:bg-stone-100 border-none"
                         >
-                            Add to Cart
+                            {t('product.add_to_cart')}
                         </Button>
                     </div>
                 </div>
@@ -98,7 +99,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }
                                 {product.name}
                             </button>
                         </h3>
-                        <p className="mt-1 text-sm text-stone-500">{product.category}</p>
+                        <p className="mt-1 text-sm text-stone-500">{t(`product.category.${product.category}` as any)}</p>
                     </div>
                     <p className="text-sm font-medium text-stone-900">${product.price}</p>
                 </div>

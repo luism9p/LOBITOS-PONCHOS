@@ -1,7 +1,7 @@
 import { Product, Subscription, User } from '../types';
 
 const STORAGE_KEYS = {
-    PRODUCTS: 'Lobitos Ponchos_products_v8',
+    PRODUCTS: 'Lobitos Ponchos_products_v9',
     USERS: 'Lobitos Ponchos_users',
     SUBSCRIPTIONS: 'Lobitos Ponchos_subscriptions',
 };
@@ -23,7 +23,10 @@ const generateProducts = (): Product[] => {
         products.push({
             id: model.id,
             name: model.name,
-            description: 'Handcrafted with premium materials for ultimate comfort and style.',
+            description: {
+                en: 'Handcrafted with premium materials for ultimate comfort and style.',
+                es: 'Hecho a mano con materiales premium para máxima comodidad y estilo.'
+            },
             price: 129,
             images: [
                 `/fotos/${model.prefix}1.jpg`,
@@ -31,13 +34,22 @@ const generateProducts = (): Product[] => {
                 `/fotos/${model.prefix}3.${model.prefix === 'md5' ? 'mp4' : 'jpg'}`
             ],
             category: index < 3 ? 'poncho' : 'Ponchos',
-            details: [
-                'Material: 100% Premium Alpaca Wool',
-                'Handwoven by artisans in the Andes',
-                'Hypoallergenic and breathable',
-                'Sustainable and eco-friendly production',
-                'Care: Dry clean only'
-            ],
+            details: {
+                en: [
+                    'Material: 100% Premium Alpaca Wool',
+                    'Handwoven by artisans in the Andes',
+                    'Hypoallergenic and breathable',
+                    'Sustainable and eco-friendly production',
+                    'Care: Dry clean only'
+                ],
+                es: [
+                    'Material: 100% Lana de Alpaca Premium',
+                    'Tejido a mano por artesanos de los Andes',
+                    'Hipoalergénico y transpirable',
+                    'Producción sostenible y ecológica',
+                    'Cuidado: Lavado en seco únicamente'
+                ]
+            },
             measures: {
                 'Total Length': '120 cm',
                 'Width': '140 cm',

@@ -10,6 +10,7 @@ import {
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface ProductModalProps {
     product: Product | null;
@@ -25,6 +26,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
     onAddToCart,
 }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const { t, language } = useLanguage();
 
     if (!product) return null;
 
@@ -42,9 +44,9 @@ export const ProductModal: React.FC<ProductModalProps> = ({
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
-            <DialogContent className="max-w-5xl w-full h-[90vh] md:h-[85vh] p-0 gap-0 bg-white overflow-hidden flex flex-col md:flex-row">
+            <DialogContent className="max-w-5xl w-full max-h-[90vh] p-0 gap-0 bg-white overflow-hidden flex flex-col md:flex-row">
                 {/* Image Section */}
-                <div className="w-full md:w-1/2 h-64 md:h-full bg-stone-100 relative group">
+                <div className="w-full md:w-1/2 h-64 md:h-full bg-stone-100 relative group flex-shrink-0">
                     {product.images[currentImageIndex].endsWith('.mp4') ? (
                         <video
                             key={currentImageIndex}
@@ -92,8 +94,8 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                 </div>
 
                 {/* Content Section */}
-                <div className="w-full md:w-1/2 flex flex-col h-full">
-                    <div className="p-6 flex-1 overflow-hidden flex flex-col">
+                <div className="w-full md:w-1/2 flex flex-col overflow-y-auto">
+                    <div className="p-6 flex flex-col flex-1">
                         <DialogHeader className="mb-4">
                             <DialogTitle className="text-2xl font-light text-stone-900">
                                 {product.name}
@@ -103,24 +105,24 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                             </DialogDescription>
                         </DialogHeader>
 
-                        <ScrollArea className="flex-1 -mr-4 pr-4">
+                        <div className="flex-1 overflow-y-auto -mr-4 pr-4 mb-4">
                             <div className="space-y-6">
                                 <div>
                                     <h4 className="text-sm font-medium text-stone-900 mb-2 uppercase tracking-wide">
-                                        Description
+                                        {t('product.description')}
                                     </h4>
                                     <p className="text-stone-600 text-sm leading-relaxed">
-                                        {product.description}
+                                        {product.description[language]}
                                     </p>
                                 </div>
 
                                 {product.details && (
                                     <div>
                                         <h4 className="text-sm font-medium text-stone-900 mb-2 uppercase tracking-wide">
-                                            Details
+                                            {t('product.details')}
                                         </h4>
                                         <ul className="list-disc list-inside text-stone-600 text-sm space-y-1">
-                                            {product.details.map((detail, index) => (
+                                            {product.details[language].map((detail, index) => (
                                                 <li key={index}>{detail}</li>
                                             ))}
                                         </ul>
@@ -130,13 +132,13 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                                 {product.measures && (
                                     <div>
                                         <h4 className="text-sm font-medium text-stone-900 mb-2 uppercase tracking-wide">
-                                            Measures
+                                            {t('product.measures')}
                                         </h4>
                                         <div className="grid grid-cols-2 gap-4">
                                             {Object.entries(product.measures).map(([key, value]) => (
                                                 <div key={key} className="bg-stone-50 p-3 rounded-sm">
                                                     <span className="block text-xs text-stone-500 uppercase tracking-wider mb-1">
-                                                        {key}
+                                                        {t(`product.measure_labels.${key}` as any) || key}
                                                     </span>
                                                     <span className="block text-sm font-medium text-stone-900">
                                                         {value}
@@ -147,9 +149,9 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                                     </div>
                                 )}
                             </div>
-                        </ScrollArea>
+                        </div>
 
-                        <div className="mt-6 pt-6 border-t border-stone-100">
+                        <div className="pt-4 border-t border-stone-100 flex-shrink-0">
                             <Button
                                 onClick={() => {
                                     onAddToCart(product);
@@ -157,7 +159,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                                 }}
                                 className="w-full bg-stone-900 text-white hover:bg-stone-800 rounded-none py-6 text-sm uppercase tracking-widest"
                             >
-                                Add to Cart
+                                {t('product.add_to_cart')}
                             </Button>
                         </div>
                     </div>

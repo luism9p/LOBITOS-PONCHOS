@@ -1,11 +1,11 @@
 export interface Product {
     id: string;
     name: string;
-    description: string;
+    description: { en: string; es: string };
     price: number;
     images: string[];
     category: 'poncho' | 'Ponchos' | 'other';
-    details?: string[];
+    details?: { en: string[]; es: string[] };
     measures?: Record<string, string>;
 }
 
