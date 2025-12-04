@@ -47,49 +47,76 @@ export const ProductModal: React.FC<ProductModalProps> = ({
             <DialogContent className="max-w-5xl w-full max-h-[95vh] p-0 gap-0 bg-white overflow-y-auto md:overflow-hidden flex flex-col md:flex-row">
                 {/* Image Section */}
                 <div className="w-full md:w-1/2 h-[50vh] md:max-h-none md:h-full bg-stone-100 relative group flex-shrink-0">
-                    {product.images[currentImageIndex].endsWith('.mp4') ? (
-                        <video
-                            key={currentImageIndex}
-                            src={product.images[currentImageIndex]}
-                            className="w-full h-full object-cover animate-in fade-in duration-500"
-                            autoPlay
-                            muted
-                            loop
-                            playsInline
-                        />
-                    ) : (
-                        <img
-                            key={currentImageIndex}
-                            src={product.images[currentImageIndex]}
-                            alt={product.name}
-                            className="w-full h-full object-cover animate-in fade-in duration-500"
-                        />
-                    )}
-
-                    {/* Image Navigation - Visible on hover */}
-                    <div className="absolute inset-0 flex items-center justify-between p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">
-                        <button
-                            onClick={prevImage}
-                            className="p-2 rounded-full bg-white/80 hover:bg-white text-stone-800 pointer-events-auto transition-colors shadow-sm"
-                        >
-                            <ChevronLeft className="h-5 w-5" />
-                        </button>
-                        <button
-                            onClick={nextImage}
-                            className="p-2 rounded-full bg-white/80 hover:bg-white text-stone-800 pointer-events-auto transition-colors shadow-sm"
-                        >
-                            <ChevronRight className="h-5 w-5" />
-                        </button>
+                    {/* Mobile Carousel (Swipe) */}
+                    <div className="md:hidden flex w-full h-full overflow-x-auto snap-x snap-mandatory no-scrollbar">
+                        {product.images.map((img, idx) => (
+                            <div key={idx} className="min-w-full h-full snap-center">
+                                {img.endsWith('.mp4') ? (
+                                    <video
+                                        src={img}
+                                        className="w-full h-full object-cover"
+                                        autoPlay
+                                        muted
+                                        loop
+                                        playsInline
+                                    />
+                                ) : (
+                                    <img
+                                        src={img}
+                                        alt={`${product.name} ${idx + 1}`}
+                                        className="w-full h-full object-cover"
+                                    />
+                                )}
+                            </div>
+                        ))}
                     </div>
 
-                    {/* Dots indicator */}
-                    <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-1.5 z-20">
-                        {product.images.map((_, idx) => (
-                            <div
-                                key={idx}
-                                className={`h-1.5 w-1.5 rounded-full transition-colors shadow-sm ${idx === currentImageIndex ? 'bg-white' : 'bg-white/50'}`}
+                    {/* Desktop Gallery (Arrows) */}
+                    <div className="hidden md:block w-full h-full relative">
+                        {product.images[currentImageIndex].endsWith('.mp4') ? (
+                            <video
+                                key={currentImageIndex}
+                                src={product.images[currentImageIndex]}
+                                className="w-full h-full object-cover animate-in fade-in duration-500"
+                                autoPlay
+                                muted
+                                loop
+                                playsInline
                             />
-                        ))}
+                        ) : (
+                            <img
+                                key={currentImageIndex}
+                                src={product.images[currentImageIndex]}
+                                alt={product.name}
+                                className="w-full h-full object-cover animate-in fade-in duration-500"
+                            />
+                        )}
+
+                        {/* Image Navigation - Visible on hover */}
+                        <div className="absolute inset-0 flex items-center justify-between p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">
+                            <button
+                                onClick={prevImage}
+                                className="p-2 rounded-full bg-white/80 hover:bg-white text-stone-800 pointer-events-auto transition-colors shadow-sm"
+                            >
+                                <ChevronLeft className="h-5 w-5" />
+                            </button>
+                            <button
+                                onClick={nextImage}
+                                className="p-2 rounded-full bg-white/80 hover:bg-white text-stone-800 pointer-events-auto transition-colors shadow-sm"
+                            >
+                                <ChevronRight className="h-5 w-5" />
+                            </button>
+                        </div>
+
+                        {/* Dots indicator */}
+                        <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-1.5 z-20">
+                            {product.images.map((_, idx) => (
+                                <div
+                                    key={idx}
+                                    className={`h-1.5 w-1.5 rounded-full transition-colors shadow-sm ${idx === currentImageIndex ? 'bg-white' : 'bg-white/50'}`}
+                                />
+                            ))}
+                        </div>
                     </div>
                 </div>
 
