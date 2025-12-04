@@ -44,9 +44,9 @@ export const ProductModal: React.FC<ProductModalProps> = ({
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
-            <DialogContent className="max-w-5xl w-full max-h-[90vh] p-0 gap-0 bg-white overflow-hidden flex flex-col md:flex-row">
+            <DialogContent className="max-w-5xl w-full max-h-[95vh] p-0 gap-0 bg-white overflow-y-auto md:overflow-hidden flex flex-col md:flex-row">
                 {/* Image Section */}
-                <div className="w-full md:w-1/2 h-64 md:h-full bg-stone-100 relative group flex-shrink-0">
+                <div className="w-full md:w-1/2 h-[50vh] md:max-h-none md:h-full bg-stone-100 relative group flex-shrink-0">
                     {product.images[currentImageIndex].endsWith('.mp4') ? (
                         <video
                             key={currentImageIndex}
@@ -94,8 +94,8 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                 </div>
 
                 {/* Content Section */}
-                <div className="w-full md:w-1/2 flex flex-col overflow-y-auto">
-                    <div className="p-6 flex flex-col flex-1">
+                <div className="w-full md:w-1/2 flex flex-col relative">
+                    <div className="p-4 md:p-6 md:flex-1 md:overflow-y-auto pb-20 md:pb-6">
                         <DialogHeader className="mb-4">
                             <DialogTitle className="text-2xl font-light text-stone-900">
                                 {product.name}
@@ -105,63 +105,62 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                             </DialogDescription>
                         </DialogHeader>
 
-                        <div className="flex-1 overflow-y-auto -mr-4 pr-4 mb-4">
-                            <div className="space-y-6">
+                        <div className="space-y-6">
+                            <div>
+                                <h4 className="text-sm font-medium text-stone-900 mb-2 uppercase tracking-wide">
+                                    {t('product.description')}
+                                </h4>
+                                <p className="text-stone-600 text-sm leading-relaxed">
+                                    {product.description[language]}
+                                </p>
+                            </div>
+
+                            {product.details && (
                                 <div>
                                     <h4 className="text-sm font-medium text-stone-900 mb-2 uppercase tracking-wide">
-                                        {t('product.description')}
+                                        {t('product.details')}
                                     </h4>
-                                    <p className="text-stone-600 text-sm leading-relaxed">
-                                        {product.description[language]}
-                                    </p>
+                                    <ul className="list-disc list-inside text-stone-600 text-sm space-y-1">
+                                        {product.details[language].map((detail, index) => (
+                                            <li key={index}>{detail}</li>
+                                        ))}
+                                    </ul>
                                 </div>
+                            )}
 
-                                {product.details && (
-                                    <div>
-                                        <h4 className="text-sm font-medium text-stone-900 mb-2 uppercase tracking-wide">
-                                            {t('product.details')}
-                                        </h4>
-                                        <ul className="list-disc list-inside text-stone-600 text-sm space-y-1">
-                                            {product.details[language].map((detail, index) => (
-                                                <li key={index}>{detail}</li>
-                                            ))}
-                                        </ul>
+                            {product.measures && (
+                                <div>
+                                    <h4 className="text-sm font-medium text-stone-900 mb-2 uppercase tracking-wide">
+                                        {t('product.measures')}
+                                    </h4>
+                                    <div className="grid grid-cols-2 gap-4">
+                                        {Object.entries(product.measures).map(([key, value]) => (
+                                            <div key={key} className="bg-stone-50 p-3 rounded-sm">
+                                                <span className="block text-xs text-stone-500 uppercase tracking-wider mb-1">
+                                                    {t(`product.measure_labels.${key}` as any) || key}
+                                                </span>
+                                                <span className="block text-sm font-medium text-stone-900">
+                                                    {value}
+                                                </span>
+                                            </div>
+                                        ))}
                                     </div>
-                                )}
-
-                                {product.measures && (
-                                    <div>
-                                        <h4 className="text-sm font-medium text-stone-900 mb-2 uppercase tracking-wide">
-                                            {t('product.measures')}
-                                        </h4>
-                                        <div className="grid grid-cols-2 gap-4">
-                                            {Object.entries(product.measures).map(([key, value]) => (
-                                                <div key={key} className="bg-stone-50 p-3 rounded-sm">
-                                                    <span className="block text-xs text-stone-500 uppercase tracking-wider mb-1">
-                                                        {t(`product.measure_labels.${key}` as any) || key}
-                                                    </span>
-                                                    <span className="block text-sm font-medium text-stone-900">
-                                                        {value}
-                                                    </span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
+                                </div>
+                            )}
                         </div>
+                    </div>
 
-                        <div className="pt-4 border-t border-stone-100 flex-shrink-0">
-                            <Button
-                                onClick={() => {
-                                    onAddToCart(product);
-                                    onClose();
-                                }}
-                                className="w-full bg-stone-900 text-white hover:bg-stone-800 rounded-none py-6 text-sm uppercase tracking-widest"
-                            >
-                                {t('product.add_to_cart')}
-                            </Button>
-                        </div>
+                    {/* Sticky Button - Always visible on mobile */}
+                    <div className="sticky md:static bottom-0 left-0 right-0 p-4 md:p-6 border-t border-stone-100 bg-white flex-shrink-0">
+                        <Button
+                            onClick={() => {
+                                onAddToCart(product);
+                                onClose();
+                            }}
+                            className="w-full bg-stone-900 text-white hover:bg-stone-800 rounded-none py-6 text-sm uppercase tracking-widest"
+                        >
+                            {t('product.add_to_cart')}
+                        </Button>
                     </div>
                 </div>
             </DialogContent>
