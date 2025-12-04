@@ -1,0 +1,38 @@
+{
+    "nav": {
+        "features": "Features",
+        "materials": "Materials",
+        "buy_now": "Buy Now",
+        "home": "Home",
+        "shop": "Shop",
+        "admin": "Admin",
+        "login": "Login",
+        "logout": "Logout"
+    },
+    "hero": {
+        "subtitle": "Premium Surf Changing Ponchos",
+        "title_1": "Change with",
+        "title_2": "Confidence",
+        "description": "Engineered for surfers who demand the best. Our premium changing Ponchos combines luxury materials with innovative design.",
+        "shop_now": "Shop Now",
+        "learn_more": "Learn More",
+        "badge_premium": "Premium",
+        "badge_fast_dry": "Fast Dry"
+    },
+    "index": {
+        "warm_refuge": "Your Warm Refuge After Every Wave",
+        "hero_desc": "Resistant and soft towel ponchos for surfers and sea lovers. Forget the towel that falls and enjoy maximum comfort.",
+        "collection_btn": "Collection",
+        "our_ponchos": "Our Ponchos",
+        "choose_favorite": "Choose your favorite model.",
+        "see_all": "See all our Ponchos",
+        "join_community": "Join the Community",
+        "newsletter_desc": "Find out before anyone else about new models, exclusive offers and news.",
+        "email_placeholder": "Your email",
+        "subscribe_btn": "Subscribe"
+    },
+    "shop": {
+        "collection": "The Collection",
+        "description": "Explore our range of handcrafted ponchos. Each piece is a testament to quality and comfort."
+    }
+}

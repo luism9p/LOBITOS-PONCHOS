@@ -1,0 +1,38 @@
+{
+    "nav": {
+        "features": "Características",
+        "materials": "Materiales",
+        "buy_now": "Comprar Ahora",
+        "home": "Inicio",
+        "shop": "Tienda",
+        "admin": "Admin",
+        "login": "Iniciar Sesión",
+        "logout": "Cerrar Sesión"
+    },
+    "hero": {
+        "subtitle": "Ponchos de Cambio Premium",
+        "title_1": "Cámbiate con",
+        "title_2": "Confianza",
+        "description": "Diseñado para surfistas que exigen lo mejor. Nuestros ponchos combinan materiales de lujo con un diseño innovador.",
+        "shop_now": "Comprar Ahora",
+        "learn_more": "Saber Más",
+        "badge_premium": "Premium",
+        "badge_fast_dry": "Secado Rápido"
+    },
+    "index": {
+        "warm_refuge": "Tu Refugio Cálido Después De Cada Ola",
+        "hero_desc": "Ponchos toalla resistentes y suaves para surfistas y amantes del mar. Olvídate de la toalla que se cae y disfruta de la máxima comodidad.",
+        "collection_btn": "Colección",
+        "our_ponchos": "Nuestros Ponchos",
+        "choose_favorite": "Elige tu modelo favorito.",
+        "see_all": "Mira todos nuestros Ponchos",
+        "join_community": "Únete a la Comunidad",
+        "newsletter_desc": "Entérate antes que nadie de nuevos modelos, ofertas exclusivas y novedades.",
+        "email_placeholder": "Tu correo electrónico",
+        "subscribe_btn": "Suscribirme"
+    },
+    "shop": {
+        "collection": "La Colección",
+        "description": "Explora nuestra gama de ponchos hechos a mano. Cada pieza es un testimonio de calidad y comodidad."
+    }
+}
